@@ -28,3 +28,5 @@ def buat_laporan(pelapor):
     }
     desc[nomor] = deskripsi
     print(f"Laporan #{nomor} berhasil dibuat!")
+    
+print('testdummy')

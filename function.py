@@ -48,3 +48,5 @@ def input_str(pesan):
         if fakta:
             return fakta
         print(Fore.RED + Style.BRIGHT + 'Input tidak boleh kosong!')
+        
+print('testdummy')

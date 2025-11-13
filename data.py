@@ -15,3 +15,5 @@ akun = {
     "radja": {"password": "012", "role": "petugas"},
     "denny": {"password": "011", "role": "warga"}
 }
+
+print('testdummy')
