@@ -1,5 +1,5 @@
 laporan = {
-    1: {
+    '0001': {
         "pelapor": "Bahlil",
         "keluhan": "Etanol",
         "status": "Diproses",
@@ -9,11 +9,9 @@ laporan = {
 }
 
 desc = {
-    1: "19 juta lapangan kerja"
+    '0001': "19 juta lapangan kerja"
 }
 akun = {
     "radja": {"password": "012", "role": "petugas"},
     "denny": {"password": "011", "role": "warga"}
 }
-
-print('testdummy')
