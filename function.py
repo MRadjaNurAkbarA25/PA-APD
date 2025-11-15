@@ -48,3 +48,14 @@ def input_str(pesan):
         if fakta:
             return fakta
         print(Fore.RED + Style.BRIGHT + 'Input tidak boleh kosong!')
+
+def max_input(pesan, max_len):
+    while True:
+        teks = input(pesan).strip()
+        if teks == '':
+            print('Tidak boleh kosong!')
+        elif len(teks) > max_len:
+            print(f'Tidak boleh lebih dari {max_len} karakter!')
+        else:
+            return teks
+            

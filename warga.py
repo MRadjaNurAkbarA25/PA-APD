@@ -1,5 +1,6 @@
 from data import *
 from datetime import *
+from function import *
 
 def lihat_laporan(pelapor):
     milik = {k: v for k, v in laporan.items() if v["pelapor"] == pelapor}
@@ -14,17 +15,19 @@ def lihat_laporan(pelapor):
         print(f"Respon: {data['respon']}")
         print(f"Tanggal: {data['date']}")
         print(f"Deskripsi: {desc.get(nomor, '-')}")
-
+    
 def buat_laporan(pelapor):
     nomor = str(len(laporan) + 1).zfill(4)
-    keluhan = input("Keluhan (max 30 karakter): ")[:30]
-    deskripsi = input("Deskripsi (max 100 karakter): ")[:100]
+    keluhan = max_input('Keluhan (max 30 karakter):', 30)
+    deskripsi = max_input('Deskripsi (max 100 karakter):', 100)
+    
     laporan[nomor] = {
-        "pelapor": pelapor,
-        "keluhan": keluhan,
-        "status": "diajukan",
-        "respon": "",
-        "date": datetime.now().strftime("%d/%m/%y %H:%M")
+        'pelapor' : pelapor,
+        'keluhan' : keluhan,
+        'status' : 'diajukan',
+        'respon' : '',
+        'date' : datetime.now().strftime('%d/%m/%y %H:%M')
     }
+    
     desc[nomor] = deskripsi
-    print(f"Laporan #{nomor} berhasil dibuat!")
+    print(f'Laporan #{nomor} berhasil dibuat!')
