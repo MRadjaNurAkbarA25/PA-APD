@@ -2,6 +2,8 @@ from function import *
 from data import *
 from warga import *
 
+print ("hello world")
+
 def ubah_data_petugas():
     print('Ubah laporan')
     

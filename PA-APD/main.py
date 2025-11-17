@@ -3,6 +3,8 @@ from petugas import *
 from warga import *
 from data import akun
 
+print ("hello world")
+
 def login():
     clear()
     print("=== LOGIN ===")
