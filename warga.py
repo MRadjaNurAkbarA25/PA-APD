@@ -18,8 +18,8 @@ def lihat_laporan(pelapor):
     
 def buat_laporan(pelapor):
     nomor = str(len(laporan) + 1).zfill(4)
-    keluhan = max_input('Keluhan (max 30 karakter):', 30)
-    deskripsi = max_input('Deskripsi (max 100 karakter):', 100)
+    keluhan = max_input('Keluhan (max 30 karakter): ', 30)
+    deskripsi = max_input('Deskripsi (max 100 karakter): ', 100)
     
     laporan[nomor] = {
         'pelapor' : pelapor,
