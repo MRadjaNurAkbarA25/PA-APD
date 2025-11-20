@@ -4,7 +4,7 @@ laporan = {
         "keluhan": "Etanol",
         "status": "Diproses",
         "respon": "Akan diperbaiki besok",
-        "date": "2025-11-11, 14:30"
+        "date": "2025/11/11, 14:30"
     }
 }
 
