@@ -11,7 +11,7 @@ def ubah_data_petugas():
     
     if not lapor:
         clear()
-        print('Nomor barang tidak ditemukan')
+        print('Nomor laporan tidak ditemukan')
         delay()
         return
     
@@ -22,7 +22,7 @@ Nomor laporan\t\t: {cari_nomor}
 Pelapor\t\t: {lapor['pelapor']}
 Keluhan\t\t: {lapor['keluhan']}
 Status\t\t: {lapor['status']}
-respon\t\t: {lapor['respon']}
+Respon\t\t: {lapor['respon']}
 Waktu\t\t: {lapor['date']}
 Deskripsi\t\t {desk}''')
         
@@ -75,3 +75,39 @@ Deskripsi\t\t {desk}''')
             
         elif pilihan == '5':
             return
+
+def hapus():
+    cari_nomor = input_str('Masukkan nomor laporan yang ingin dihapus: ')
+    lapor = laporan.get(cari_nomor)
+    desk = desc.get(cari_nomor)
+    
+    if not lapor:
+        clear()
+        print('Nomor laporan tidak ditemukan')
+        delay()
+        return
+    
+    clear()
+    print(f''' Laporan saat ini:
+Nomor laporan\t\t: {cari_nomor}
+Pelapor\t\t: {lapor['pelapor']}
+Keluhan\t\t: {lapor['keluhan']}
+Status\t\t: {lapor['status']}
+Respon\t\t: {lapor['respon']}
+Waktu\t\t: {lapor['date']}
+Deskripsi\t\t {desk}''')
+    
+    konfirmasi = pilih_opsi('Hapus laporan?(y/n)', ['y','n'], 
+                            'Pilihan tidak valid!').lower()
+    
+    if konfirmasi == 'y':
+        del laporan[cari_nomor]
+        if cari_nomor in desc:
+            del desc[cari_nomor]
+        clear()
+        print('Laporan berhasil dihapus!')
+        delay()
+    else:
+        clear()
+        print('Penghapusan dibatalkan')
+        delay()
