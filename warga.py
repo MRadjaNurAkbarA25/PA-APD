@@ -2,7 +2,7 @@ from data import *
 from datetime import *
 from function import *
 
-def lihat_laporan(pelapor):
+def lihat_laporan_spesifik(pelapor):
     milik = {k: v for k, v in laporan.items() if v["pelapor"] == pelapor}
     if not milik:
         print("Belum ada laporan.")
@@ -14,20 +14,61 @@ def lihat_laporan(pelapor):
         print(f"Status: {data['status']}")
         print(f"Respon: {data['respon']}")
         print(f"Tanggal: {data['date']}")
-        print(f"Deskripsi: {desc.get(nomor, '-')}")
+        print(f"Deskripsi: {data.get(nomor, '-')}")
     
-def buat_laporan(pelapor):
-    nomor = str(len(laporan) + 1).zfill(4)
-    keluhan = max_input('Keluhan (max 30 karakter): ', 30)
-    deskripsi = max_input('Deskripsi (max 100 karakter): ', 100)
+def ubah_laporan_warga(pelapor):
+    cari_nomor = input_str('Masukkan nomor laporan yang ingin diubah: ')
+    lapor = laporan.get(cari_nomor)
     
-    laporan[nomor] = {
-        'pelapor' : pelapor,
-        'keluhan' : keluhan,
-        'status' : 'diajukan',
-        'respon' : '',
-        'date' : datetime.now().strftime('%d/%m/%y %H:%M')
-    }
+    if not lapor:
+        clear()
+        print('Nomor laporan tidak ditemukan!')
+        delay()
+        return
     
-    desc[nomor] = deskripsi
-    print(f'Laporan #{nomor} berhasil dibuat!')
+    if lapor['pelapor'] != pelapor:
+        clear()
+        print('Anda tidak dapat mengubah laporan ini!')
+        delay()
+        return
+    
+    if lapor['status'] != 'diajukan':
+        clear()
+        print('Laporan sudah tidak bisa diubah!')
+        delay()
+        return
+    
+    while True:
+        clear()
+        print(f''' Laporan saat ini:
+Nomor laporan   : {cari_nomor}
+Pelapor         : {lapor['pelapor']}
+Keluhan         : {lapor['keluhan']}
+Status          : {lapor['status']}
+Respon          : {lapor['respon']}
+Waktu           : {lapor['date']}
+Deskripsi       : {lapor['deskripsi']}''')
+        
+        print('''===MENU UBAH DATA===
+1. Ubah keluhan
+2. Ubah deskripsi
+3. Kembali ke menu warga''')
+        
+        pilihan = pilih_opsi('Pilih menu', 
+                        ['1', '2', '3'], 
+                        'Pilihan tidak valid!')
+        
+        if pilihan == '1':
+            lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
+            clear()
+            print('Laporan berhasil diupdate!')
+            delay()
+        
+        elif pilihan == '2':
+            lapor[cari_nomor] = max_input('Deskripsi (max 50 karakter): ', 50)
+            clear()
+            print('Laporan berhasil diupdate!')
+            delay()
+        
+        elif pilihan == '3':
+            return

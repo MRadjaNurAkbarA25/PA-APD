@@ -3,14 +3,17 @@ import time
 from data import *
 from colorama import Fore, Style
 from prettytable import PrettyTable
+from datetime import datetime
 
 def tabel():
     table = PrettyTable()
-    table.field_names = ['No Laporan', 'Pelapor', 'Keluhan', 'Status', 'Respon', 'Waktu']
+    table.field_names = ['No Laporan', 'Pelapor', 'Keluhan', 
+                        'Deskripsi', 'Status', 'Respon', 'Waktu']
     
     table.max_width['Keluhan'] = 15
     table.max_width['Respon'] = 15
     table.max_width['Waktu'] = 16
+    table.max_width['Deskripsi'] = 16
     
     table.align['No Laporan'] = 'c'
     table.align['Pelapor'] = 'l'
@@ -22,7 +25,8 @@ def tabel():
     for item, data in laporan.items():
         table.add_row([item, 
                     data['pelapor'], 
-                    data['keluhan'], 
+                    data['keluhan'],
+                    data['deskripsi'],
                     data['status'], 
                     data['respon'], 
                     data['date'],])
@@ -58,4 +62,19 @@ def max_input(pesan, max_len):
             print(f'Tidak boleh lebih dari {max_len} karakter!')
         else:
             return teks
-            
+
+def buat_laporan(pelapor):
+    nomor = str(len(laporan) + 1).zfill(4)
+    keluhan = max_input('Keluhan (max 30 karakter): ', 30)
+    deskripsi = max_input('Deskripsi (max 100 karakter): ', 100)
+    
+    laporan[nomor] = {
+        'pelapor' : pelapor,
+        'keluhan' : keluhan,
+        'deskripsi': deskripsi,
+        'status' : 'diajukan',
+        'respon' : '',
+        'date' : datetime.now().strftime('%d/%m/%y %H:%M')
+    }
+    
+    print(f'Laporan #{nomor} berhasil dibuat!')            
