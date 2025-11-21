@@ -3,7 +3,35 @@ from petugas import *
 from warga import *
 from data import akun
 
-print ("hello world")
+
+def register():
+    clear()
+    print("=== DAFTAR AKUN BARU ===")
+    username = input("Buat username : ").strip()
+
+    if username in akun:
+        print("Username sudah dipakai!")
+        delay()
+        return
+
+    password = input("Buat password : ").strip()
+
+    # Pilih role
+    print("\nPilih jenis akun:")
+    print("1. Warga")
+    print("2. Petugas")
+    role = pilih_opsi("Role: ", ["1", "2"])
+
+    role = "warga" if role == "1" else "petugas"
+
+    akun[username] = {
+        "password": password,
+        "role": role
+    }
+
+    print("\nAkun berhasil dibuat!")
+    delay()
+
 
 def login():
     clear()
@@ -42,7 +70,7 @@ def menu_petugas(username):
             input("\nEnter untuk kembali...")
 
         elif pilihan == "3":
-            return
+            break
 
 
 def menu_warga(username):
@@ -66,35 +94,57 @@ def menu_warga(username):
             input("\nEnter untuk kembali...")
 
         elif pilihan == "3":
-            return
+            break
 
 
 def main():
+    user_login = None  # menyimpan username jika sedang login
+
     while True:
         clear()
         print("=== SISTEM LAPORAN ===")
         print("1. Login")
-        print("2. Keluar")
+        print("2. Register")
+        print("3. Logout")
+        print("4. Keluar")
 
-        pilihan = pilih_opsi("Pilih menu: ", ["1", "2"])
+        pilihan = pilih_opsi("Pilih menu: ", ["1", "2", "3", "4"])
 
+        # LOGIN
         if pilihan == "1":
-            username, role = login()
-            if username:
-                if role == "petugas":
-                    menu_petugas(username)
-                else:
-                    menu_warga(username)
+            if user_login:
+                print("Anda sudah login!")
+                delay()
+            else:
+                username, role = login()
+                if username:
+                    user_login = (username, role)
+                    if role == "petugas":
+                        menu_petugas(username)
+                    else:
+                        menu_warga(username)
+                    user_login = None  # logout otomatis saat keluar menu
 
+        # REGISTER
         elif pilihan == "2":
+            register()
+
+        # MANUAL LOGOUT
+        elif pilihan == "3":
+            if user_login:
+                print("Berhasil logout.")
+                user_login = None
+            else:
+                print("Anda belum login.")
+            delay()
+
+        # KELUAR PROGRAM
+        elif pilihan == "4":
             clear()
-            print("Keluar dari program...")
+            print("Menutup program...")
             delay()
             break
 
 
 if __name__ == "__main__":
     main()
-
-
-print(tabel())
