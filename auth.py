@@ -18,13 +18,30 @@ def login():
 
 #Register belum selesai
 def register():
+    clear()
     print('===Daftar Akun===')
     username = input('Masukkan Username: ').strip()
-    password = input ('Masukkan Password: ').strip()
+    if not username.isalnum():
+        print ('Username hanya boleh huruf dan angka!')
+        delay()
+        return
+    
     if username in akun:
-        print('username sudah digunakan!')
+        print('Username sudah digunakan!')
         return
-    else:
-        akun[username] = {'password': password, 'role': 'warga'}
-        print ('akun berhasil di daftarkan silakan login!')
+    
+    password = input ('Masukkan Password: ').strip()
+    if len(password) < 3:
+        print ('Password minimal 3 karakter!')
+        delay()
         return
+    
+    konfirmasi = input('Konfirmasi password: ').strip()
+    if password != konfirmasi:
+        print ('Password tidak cocok!')
+        delay()
+        return
+    
+    akun[username] ={'password': password, 'role': 'warga'}
+    print ('Akun berhasil didaftarkan sebagai warga!')
+    delay()
