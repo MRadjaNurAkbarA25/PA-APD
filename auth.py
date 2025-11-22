@@ -16,7 +16,7 @@ def login():
         delay()
         return None, None
 
-
+#Register belum selesai
 def register():
     print('===Daftar Akun===')
     username = input('Masukkan Username: ').strip()
@@ -28,5 +28,3 @@ def register():
         akun[username] = {'password': password, 'role': 'warga'}
         print ('akun berhasil di daftarkan silakan login!')
         return
-
-print('hello world')

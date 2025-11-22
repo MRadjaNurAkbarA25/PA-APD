@@ -10,10 +10,12 @@ def menu_petugas(username):
 1. Lihat laporan
 2. Buat Laporan
 3. Ubah Data laporan
-4. Logout
-5. Keluar Program''')
+4. Hapus Laporan
+5. Logout
+6. Keluar Program''')
 
-        pilihan = pilih_opsi('Pilih menu: ', ['1', '2', '3', '4', '5'])
+        pilihan = pilih_opsi('Pilih menu: ', ['1', '2', '3', '4', '5', '6'],
+                            'Pilihan tidak valid')
 
         if pilihan == '1':
             clear()
@@ -32,7 +34,20 @@ def menu_petugas(username):
             input('\nEnter untuk kembali...')
 
         elif pilihan == '4':
+            clear()
+            hapus_laporan()
+            input('\nEnter untuk kembali...')
+            
+        elif pilihan == '5':
+            clear()
+            input('\nEnter untuk kembali...')
             return
+            
+        elif pilihan == '6':
+            clear()
+            print('Terima kasih telah menggunakan LAPOR AJA!!!')
+            delay()
+            exit() 
 
 def menu_warga(username):
     while True:

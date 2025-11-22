@@ -43,7 +43,7 @@ def pilih_opsi(pesan, daftar_valid, pesan_error='Pilihan tidak valid!'):
         pilihan = input(pesan).strip()
         if pilihan in daftar_valid:
             return pilihan
-        print(Fore.RED + Style.BRIGHT + pesan_error)
+        print(pesan_error)
         delay()
         
 def input_str(pesan):
@@ -66,7 +66,7 @@ def max_input(pesan, max_len):
 def buat_laporan(pelapor):
     nomor = str(len(laporan) + 1).zfill(4)
     keluhan = max_input('Keluhan (max 30 karakter): ', 30)
-    deskripsi = max_input('Deskripsi (max 100 karakter): ', 100)
+    deskripsi = max_input('Deskripsi (max 50 karakter): ', 50)
     
     laporan[nomor] = {
         'pelapor' : pelapor,

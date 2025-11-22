@@ -14,7 +14,7 @@ def lihat_laporan_spesifik(pelapor):
         print(f"Status: {data['status']}")
         print(f"Respon: {data['respon']}")
         print(f"Tanggal: {data['date']}")
-        print(f"Deskripsi: {data.get(nomor, '-')}")
+        print(f"Deskripsi: {data['deskripsi']}")
     
 def ubah_laporan_warga(pelapor):
     cari_nomor = input_str('Masukkan nomor laporan yang ingin diubah: ')
@@ -54,7 +54,7 @@ Deskripsi       : {lapor['deskripsi']}''')
 2. Ubah deskripsi
 3. Kembali ke menu warga''')
         
-        pilihan = pilih_opsi('Pilih menu', 
+        pilihan = pilih_opsi('Pilih menu: ', 
                         ['1', '2', '3'], 
                         'Pilihan tidak valid!')
         
@@ -65,7 +65,7 @@ Deskripsi       : {lapor['deskripsi']}''')
             delay()
         
         elif pilihan == '2':
-            lapor[cari_nomor] = max_input('Deskripsi (max 50 karakter): ', 50)
+            lapor['deskripsi'] = max_input('Deskripsi (max 50 karakter): ', 50)
             clear()
             print('Laporan berhasil diupdate!')
             delay()
