@@ -1,6 +1,5 @@
 from function import *
 from data import akun
-import time
 
 def login():
     clear()
