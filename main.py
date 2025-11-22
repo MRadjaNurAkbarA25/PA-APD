@@ -6,8 +6,10 @@ from data import akun
 
 def register():
     clear()
-    print("=== DAFTAR AKUN BARU ===")
-    username = input("Buat username : ").strip()
+    print('''=== SELAMAT DATANG DI LAPORRR!!! ===
+Silahkan login untuk melapor
+1. Login
+2. Keluar''')
 
     if username in akun:
         print("Username sudah dipakai!")
