@@ -26,7 +26,7 @@ def register():
         return
     else:
         akun[username] = {'password': password, 'role': 'warga'}
-        print ('akun berhasil di daftarkan silakan login')
+        print ('akun berhasil di daftarkan silakan login!')
         return
 
 print('hello world')
