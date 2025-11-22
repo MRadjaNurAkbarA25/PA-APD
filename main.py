@@ -85,7 +85,7 @@ def menu_warga(username):
 
         if pilihan == "1":
             clear()
-            lihat_laporan(username)
+            lihat_laporan_spesifik(username)
             input("\nEnter untuk kembali...")
 
         elif pilihan == "2":
