@@ -7,7 +7,8 @@ from auth import *
 
 while True:
     clear()
-    print('''=== SISTEM LAPORAN ===
+    print('''=== SELAMAT DATANG DI LAPORRR!!! ===
+Silahkan login untuk melapor
 1. Login
 2. Keluar''')
 
