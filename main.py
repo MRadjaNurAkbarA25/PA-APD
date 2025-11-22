@@ -1,9 +1,11 @@
 from function import *
+from ketua_rt import *
 from auth import *
-from data import akun
 from menu import *
+from data import *
 from colorama import Fore, Style
 
+muat_data_dari_csv()
 clear()
 while True:
     user_login = None
@@ -26,6 +28,8 @@ Silahkan login untuk lanjut
                     user_login = (username, role)
                     if role == "petugas":
                         menu_petugas(username)
+                    elif role == "ketua_rt":
+                        menu_ketua_rt(username)
                     else:
                         menu_warga(username)
                     user_login = None
@@ -35,6 +39,7 @@ Silahkan login untuk lanjut
     
     elif pilihan == '3':
         clear()
+        simpan_semua()
         print('Terima kasih telah menggunakan LAPOR AJA!!!')
         delay()
-        exit()    
+        exit()

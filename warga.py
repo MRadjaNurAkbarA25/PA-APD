@@ -32,12 +32,6 @@ def ubah_laporan_warga(pelapor):
         delay()
         return
     
-    if lapor['status'] != 'diajukan':
-        clear()
-        print('Laporan sudah tidak bisa diubah!')
-        delay()
-        return
-    
     while True:
         clear()
         print(f''' Laporan saat ini:

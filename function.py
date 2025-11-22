@@ -1,3 +1,4 @@
+import csv
 import os
 import time
 from data import *
@@ -72,9 +73,76 @@ def buat_laporan(pelapor):
         'pelapor' : pelapor,
         'keluhan' : keluhan,
         'deskripsi': deskripsi,
-        'status' : 'diajukan',
+        'status' : 'Diajukan',
         'respon' : '',
         'date' : datetime.now().strftime('%d/%m/%y %H:%M')
     }
     
-    print(f'Laporan #{nomor} berhasil dibuat!')            
+    print(f'Laporan #{nomor} berhasil dibuat!')
+
+FILE_AKUN = 'akun.csv'
+FILE_LAPORAN = 'laporan.csv'
+
+def muat_data_dari_csv():
+    global akun, laporan
+    akun = {}
+    laporan = {}
+
+    # muat akun
+    if os.path.exists(FILE_AKUN):
+        with open(FILE_AKUN, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                akun[row['username']] = {
+                    'password': row['password'],
+                    'role': row['role']
+                }
+    else:
+        # akun default ketua rt bisa di tambah
+        akun_default = {
+            "radja": {"password": "012", "role": "petugas"},
+            "denny": {"password": "011", "role": "warga"},
+            "hitler": {"password": "ganteng", "role": "ketua_rt"}
+        }
+        akun.update(akun_default)
+        simpan_akun_ke_csv()
+
+    # muat laporan
+    if os.path.exists(FILE_LAPORAN):
+        with open(FILE_LAPORAN, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                laporan[row['nomor']] = {
+                    'pelapor': row['pelapor'],
+                    'keluhan': row['keluhan'],
+                    'deskripsi': row['deskripsi'],
+                    'status': row['status'],
+                    'respon': row['respon'],
+                    'date': row['waktu']
+                }
+
+def simpan_akun_ke_csv():
+    with open(FILE_AKUN, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['username', 'password', 'role'])
+        for user, data in akun.items():
+            writer.writerow([user, data['password'], data['role']])
+
+def simpan_laporan_ke_csv():
+    with open(FILE_LAPORAN, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['nomor', 'pelapor', 'keluhan', 'deskripsi', 'status', 'respon', 'waktu'])
+        for no, data in laporan.items():
+            writer.writerow([
+                no,
+                data['pelapor'],
+                data['keluhan'],
+                data['deskripsi'],
+                data['status'],
+                data['respon'],
+                data['date']
+            ])
+
+def simpan_semua():
+    simpan_akun_ke_csv()
+    simpan_laporan_ke_csv()

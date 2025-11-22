@@ -40,11 +40,11 @@ def menu_petugas(username):
             
         elif pilihan == '5':
             clear()
-            input('\nEnter untuk kembali...')
             return
             
         elif pilihan == '6':
             clear()
+            simpan_semua()
             print('Terima kasih telah menggunakan LAPOR AJA!!!')
             delay()
             exit() 
@@ -76,4 +76,5 @@ def menu_warga(username):
             input('\nEnter untuk kembali...')
 
         elif pilihan == '4':
+            clear()
             return
