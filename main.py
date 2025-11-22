@@ -5,7 +5,10 @@ from menu import *
 from data import *
 from colorama import Fore, Style
 
+print ("sebelum tes data",akun)
 muat_data_dari_csv()
+print ("sesudah tes data",akun)
+delay()
 clear()
 while True:
     user_login = None

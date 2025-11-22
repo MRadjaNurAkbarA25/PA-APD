@@ -44,4 +44,5 @@ def register():
     
     akun[username] ={'password': password, 'role': 'warga'}
     print ('Akun berhasil didaftarkan sebagai warga!')
+    simpan_akun_ke_csv()
     delay()

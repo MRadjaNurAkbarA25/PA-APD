@@ -134,4 +134,5 @@ def menu_ketua_rt(username):
             delay()
 
         elif pilihan == '0':
+            clear()
             return
