@@ -1,11 +1,13 @@
 from data import *
 from datetime import *
 from function import *
+from colorama import Fore, Style, init
+init(autoreset=True)
 
 def lihat_laporan_spesifik(pelapor):
     milik = {k: v for k, v in laporan.items() if v["pelapor"] == pelapor}
     if not milik:
-        print("Belum ada laporan.")
+        print(Fore.YELLOW + Style.BRIGHT + "Belum ada laporan.")
         return
     for nomor, data in milik.items():
         print(f"\nLaporan #{nomor}")
@@ -17,24 +19,25 @@ def lihat_laporan_spesifik(pelapor):
         print(f"Deskripsi: {data['deskripsi']}")
     
 def ubah_laporan_warga(pelapor):
+    lihat_laporan_spesifik()
     cari_nomor = input_str('Masukkan nomor laporan yang ingin diubah: ')
     lapor = laporan.get(cari_nomor)
     
     if not lapor:
         clear()
-        print('Nomor laporan tidak ditemukan!')
+        print(Fore.RED + Style.BRIGHT + 'Nomor laporan tidak ditemukan!')
         delay()
         return
     
     if lapor['pelapor'] != pelapor:
         clear()
-        print('Anda tidak dapat mengubah laporan ini!')
+        print(Fore.YELLOW + Style.BRIGHT + 'Anda tidak dapat mengubah laporan ini')
         delay()
         return
     
     while True:
         clear()
-        print(f''' Laporan saat ini:
+        print(f'''Laporan saat ini:
 Nomor laporan   : {cari_nomor}
 Pelapor         : {lapor['pelapor']}
 Keluhan         : {lapor['keluhan']}
@@ -49,19 +52,18 @@ Deskripsi       : {lapor['deskripsi']}''')
 3. Kembali ke menu warga''')
         
         pilihan = pilih_opsi('Pilih menu: ', 
-                        ['1', '2', '3'], 
-                        'Pilihan tidak valid!')
+                        ['1', '2', '3'])
         
         if pilihan == '1':
             lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
             clear()
-            print('Laporan berhasil diupdate!')
+            print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
             delay()
         
         elif pilihan == '2':
             lapor['deskripsi'] = max_input('Deskripsi (max 50 karakter): ', 50)
             clear()
-            print('Laporan berhasil diupdate!')
+            print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
             delay()
         
         elif pilihan == '3':

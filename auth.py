@@ -1,5 +1,7 @@
 from function import *
 from data import akun
+from colorama import Fore, Style, init
+init(autoreset=True)
 
 def login():
     clear()
@@ -8,41 +10,43 @@ def login():
     password = input('Password : ').strip()
 
     if username in akun and akun[username]['password'] == password:
-        print('Login berhasil!')
+        print(Fore.GREEN + Style.BRIGHT + 'Login berhasil!')
         delay()
         return username, akun[username]['role']
     else:
-        print('Username atau password salah!')
+        print(Fore.RED + Style.BRIGHT + 'Username atau password salah!')
         delay()
         return None, None
 
-#Register belum selesai
 def register():
     clear()
-    print('===Daftar Akun===')
+    print(Fore.CYAN + Style.BRIGHT + '===SIGN IN===')
     username = input('Masukkan Username: ').strip()
+    
     if not username.isalnum():
-        print ('Username hanya boleh huruf dan angka!')
+        print (Fore.RED + Style.BRIGHT + 'Username hanya boleh huruf dan angka!')
         delay()
         return
     
     if username in akun:
-        print('Username sudah digunakan!')
+        print(Fore.RED + Style.BRIGHT + 'Username sudah digunakan!')
         return
     
     password = input ('Masukkan Password: ').strip()
     if len(password) < 3:
-        print ('Password minimal 3 karakter!')
+        print (Fore.RED + Style.BRIGHT + 'Password minimal 3 karakter!')
         delay()
         return
     
-    konfirmasi = input('Konfirmasi password: ').strip()
-    if password != konfirmasi:
-        print ('Password tidak cocok!')
-        delay()
-        return
-    
-    akun[username] ={'password': password, 'role': 'warga'}
-    print ('Akun berhasil didaftarkan sebagai warga!')
-    simpan_akun_ke_csv()
-    delay()
+    while True:
+        konfirmasi = input('Konfirmasi password: ').strip()
+        if password != konfirmasi:
+            print (Fore.RED + Style.BRIGHT + 'Password tidak cocok!')
+            delay()
+            continue
+        else:
+            akun[username] ={'password': password, 'role': 'warga'}
+            print (Fore.GREEN + Style.BRIGHT + 'Akun berhasil didaftarkan!')
+            simpan_akun_ke_csv()
+            delay()
+            return
