@@ -2,9 +2,10 @@ import csv
 import os
 import time
 from data import akun, laporan  
-from colorama import Fore, Style
+from colorama import Fore, Style, init
 from prettytable import PrettyTable
 from datetime import datetime
+init(autoreset=True)
 
 def tabel():
     table = PrettyTable()
@@ -33,6 +34,20 @@ def tabel():
                     data['date']])
     return table
 
+def tabul():
+    kotak= PrettyTable()
+    kotak.field_names = ['Username', 'Role']
+    
+    kotak.max_width['Username'] = 15
+    kotak.max_width['Role'] = 12
+    
+    kotak.align['Username'] = 'c'
+    kotak.align['Role'] = 'c'
+    
+    for username, role in akun.items():
+        kotak.add_row([username, role['role']])
+    return kotak 
+    
 def clear():
     os.system('cls || clear')
     
@@ -44,7 +59,7 @@ def pilih_opsi(pesan, daftar_valid, pesan_error='Pilihan tidak valid!'):
         pilihan = input(pesan).strip()
         if pilihan in daftar_valid:
             return pilihan
-        print(pesan_error)
+        print(Fore.RED + Style.BRIGHT + pesan_error)
         delay()
         
 def input_str(pesan):
@@ -58,9 +73,9 @@ def max_input(pesan, max_len):
     while True:
         teks = input(pesan).strip()
         if teks == '':
-            print('Tidak boleh kosong!')
+            print(Fore.RED + Style.BRIGHT + 'Tidak boleh kosong!')
         elif len(teks) > max_len:
-            print(f'Tidak boleh lebih dari {max_len} karakter!')
+            print(Fore.RED + Style.BRIGHT + f'Tidak boleh lebih dari {max_len} karakter!')
         else:
             return teks
 
@@ -73,7 +88,7 @@ def buat_laporan(pelapor):
         'pelapor' : pelapor,
         'keluhan' : keluhan,
         'deskripsi': deskripsi,
-        'status' : 'Diajukan',
+        'status' : 'diajukan',
         'respon' : '',
         'date' : datetime.now().strftime('%d/%m/%y %H:%M')
     }
@@ -121,7 +136,7 @@ def muat_data_dari_csv():
                 }
     else:
         akun_default = {
-            "hitler": {"password": "ganteng", "role": "ketua_rt"},
+            "adit": {"password": "002", "role": "ketua_rt"},
             "radja": {"password": "012", "role": "petugas"},
             "denny": {"password": "011", "role": "warga"}
         }
@@ -155,3 +170,40 @@ def muat_data_dari_csv():
     akun.update(akun_default)
     laporan.clear()
     laporan.update(laporan_baru)
+
+def hapus_laporan():
+    print(tabel())
+    cari_nomor = input_str('Masukkan nomor laporan yang ingin dihapus: ')
+    lapor = laporan.get(cari_nomor)
+    
+    if not lapor:
+        clear()
+        print(Fore.RED + Style.BRIGHT + 'Nomor laporan tidak ditemukan!')
+        delay()
+        return
+    
+    clear()
+    print(f'''Laporan saat ini:
+Nomor laporan   : {cari_nomor}
+Pelapor         : {lapor['pelapor']}
+Keluhan         : {lapor['keluhan']}
+Status          : {lapor['status']}
+Respon          : {lapor['respon']}
+Waktu           : {lapor['date']}
+Deskripsi       : {lapor['deskripsi']}''')
+    
+    konfirmasi = pilih_opsi('Hapus laporan?(y/n): ', ['y','n']).lower()
+    
+    if konfirmasi == 'y':
+        del laporan[cari_nomor]
+        clear()
+        print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil dihapus!')
+        delay()
+    else:
+        clear()
+        print(Fore.YELLOW + Style.BRIGHT + 'Penghapusan dibatalkan')
+        delay()
+
+def cyan(pesan, jumlah):
+    warna = (Fore.CYAN + Style.BRIGHT + pesan * int(jumlah) )
+    print(warna)
