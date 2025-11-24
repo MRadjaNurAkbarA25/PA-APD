@@ -7,7 +7,7 @@ def login():
     clear()
     print('=== LOGIN ===')
     username = input('Username : ').strip()
-    password = input('Password : ').strip()
+    password = input('Password : ')
 
     if username in akun and akun[username]['password'] == password:
         print(Fore.GREEN + Style.BRIGHT + 'Login berhasil!')

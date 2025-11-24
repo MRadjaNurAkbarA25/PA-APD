@@ -19,7 +19,7 @@ def lihat_laporan_spesifik(pelapor):
         print(f"Deskripsi: {data['deskripsi']}")
     
 def ubah_laporan_warga(pelapor):
-    lihat_laporan_spesifik()
+    lihat_laporan_spesifik(pelapor)
     cari_nomor = input_str('Masukkan nomor laporan yang ingin diubah: ')
     lapor = laporan.get(cari_nomor)
     
