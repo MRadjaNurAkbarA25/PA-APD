@@ -7,6 +7,16 @@ from prettytable import PrettyTable
 from datetime import datetime
 init(autoreset=True)
 
+def cyan(pesan, jumlah):
+    warna = (Fore.CYAN + Style.BRIGHT + pesan * int(jumlah) )
+    print(warna)
+    
+def clear():
+    os.system('cls || clear')
+    
+def delay():
+    time.sleep(1)
+    
 def tabel():
     table = PrettyTable()
     table.field_names = ['No Laporan', 'Pelapor', 'Keluhan', 
@@ -48,12 +58,6 @@ def tabul():
         kotak.add_row([username, role['role']])
     return kotak 
     
-def clear():
-    os.system('cls || clear')
-    
-def delay():
-    time.sleep(1)
-    
 def pilih_opsi(pesan, daftar_valid, pesan_error='Pilihan tidak valid!'):
     while True:
         pilihan = input(pesan).strip()
@@ -79,6 +83,44 @@ def max_input(pesan, max_len):
         else:
             return teks
 
+def filter_status(status):
+    hasil = {}
+    for nomor, data in laporan.items():
+        if data['status'].lower() == status.lower():
+            hasil[nomor] = data 
+    return hasil
+
+def tampil_filter(laporan_filter):
+    if not laporan_filter:
+        print(Fore.YELLOW + Style.BRIGHT + 'Tidak ada laporan dengan status tersebut!')
+        return
+    table = PrettyTable()
+    table.field_names = ['No Laporan', 'Pelapor', 'Keluhan', 
+                        'Deskripsi', 'Status', 'Respon', 'Waktu']
+    
+    table.max_width['Keluhan'] = 15
+    table.max_width['Respon'] = 15
+    table.max_width['Waktu'] = 16
+    table.max_width['Deskripsi'] = 16
+    
+    table.align['No Laporan'] = 'c'
+    table.align['Pelapor'] = 'l'
+    table.align['Keluhan'] = 'l'
+    table.align['Status'] = 'l'
+    table.align['Respon'] = 'l'
+    table.align['Waktu'] = 'c'
+    
+    for item, data in laporan_filter.items():
+        table.add_row([item, 
+                    data['pelapor'], 
+                    data['keluhan'],
+                    data['deskripsi'],
+                    data['status'], 
+                    data['respon'], 
+                    data['date']])
+    print(table)
+    print(Fore.CYAN + f' Total: {len(laporan_filter)} laporan ditemukan')
+
 def buat_laporan(pelapor):
     nomor = str(len(laporan) + 1).zfill(4)
     keluhan = max_input('Keluhan (max 30 karakter): ', 30)
@@ -95,6 +137,74 @@ def buat_laporan(pelapor):
     
     print(f'Laporan #{nomor} berhasil dibuat!')
     simpan_laporan_ke_csv()  
+
+def hapus_laporan():
+    print(tabel())
+    cari_nomor = input_str('Masukkan nomor laporan yang ingin dihapus: ')
+    lapor = laporan.get(cari_nomor)
+    
+    if not lapor:
+        clear()
+        print(Fore.RED + Style.BRIGHT + 'Nomor laporan tidak ditemukan!')
+        delay()
+        return
+    
+    clear()
+    print(f'''Laporan saat ini:
+Nomor laporan   : {cari_nomor}
+Pelapor         : {lapor['pelapor']}
+Keluhan         : {lapor['keluhan']}
+Status          : {lapor['status']}
+Respon          : {lapor['respon']}
+Waktu           : {lapor['date']}
+Deskripsi       : {lapor['deskripsi']}''')
+    
+    konfirmasi = pilih_opsi('Hapus laporan?(y/n): ', ['y','n']).lower()
+    
+    if konfirmasi == 'y':
+        del laporan[cari_nomor]
+        clear()
+        print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil dihapus!')
+        delay()
+    else:
+        clear()
+        print(Fore.YELLOW + Style.BRIGHT + 'Penghapusan dibatalkan')
+        delay()
+
+def logout():
+    clear()
+    kembali = pilih_opsi('Konfirmasi log-out?(y/n): ', ['y', 'n']).lower()
+    
+    if kembali == 'y':
+        clear()
+        print(Fore.CYAN + Style.BRIGHT + 'Kamu menekan tombol log-out!')
+        delay()
+        return True
+    elif kembali == 'n':
+        print(Fore.YELLOW + Style.BRIGHT + 'Log-out dibatalkan')  
+    delay()
+    return False
+
+def keluar(): #Fungsi untuk keluar dari program
+    clear()
+    while True:
+        konfirmasi = input('Yakin ingin keluar dari program?(y/n):')
+        
+        if konfirmasi.lower() == 'y':
+            clear()
+            simpan_semua()
+            cyan('-', '45')
+            print(Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Terima kasih telah menggunakan LAPORIN AJA!!!')
+            cyan('-', '45')
+            delay()
+            exit()
+        elif konfirmasi.lower() == 'n':
+            print('Kembali ke program')
+            delay()
+            clear()
+            return
+        else:
+            print(Fore.RED + Style.BRIGHT + 'Input tidak valid!')
 
 def simpan_akun_ke_csv():
     with open('akun.csv', 'w', newline='', encoding='utf-8') as f:
@@ -170,40 +280,3 @@ def muat_data_dari_csv():
     akun.update(akun_default)
     laporan.clear()
     laporan.update(laporan_baru)
-
-def hapus_laporan():
-    print(tabel())
-    cari_nomor = input_str('Masukkan nomor laporan yang ingin dihapus: ')
-    lapor = laporan.get(cari_nomor)
-    
-    if not lapor:
-        clear()
-        print(Fore.RED + Style.BRIGHT + 'Nomor laporan tidak ditemukan!')
-        delay()
-        return
-    
-    clear()
-    print(f'''Laporan saat ini:
-Nomor laporan   : {cari_nomor}
-Pelapor         : {lapor['pelapor']}
-Keluhan         : {lapor['keluhan']}
-Status          : {lapor['status']}
-Respon          : {lapor['respon']}
-Waktu           : {lapor['date']}
-Deskripsi       : {lapor['deskripsi']}''')
-    
-    konfirmasi = pilih_opsi('Hapus laporan?(y/n): ', ['y','n']).lower()
-    
-    if konfirmasi == 'y':
-        del laporan[cari_nomor]
-        clear()
-        print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil dihapus!')
-        delay()
-    else:
-        clear()
-        print(Fore.YELLOW + Style.BRIGHT + 'Penghapusan dibatalkan')
-        delay()
-
-def cyan(pesan, jumlah):
-    warna = (Fore.CYAN + Style.BRIGHT + pesan * int(jumlah) )
-    print(warna)

@@ -52,6 +52,7 @@ def ubah_role():
     konfirmasi = pilih_opsi(f'Ganti role {target}? (y/n): ', ['y','n']).lower()
     if konfirmasi == 'y':
         akun[target]['role'] = role_map[role_pilih]
+        simpan_akun_ke_csv()
         print(Fore.GREEN + Style.BRIGHT + f'Role {target} berhasil diubah!')
         delay()
     else:
@@ -72,6 +73,7 @@ def hapus_akun(pelapor):
     konfirmasi = pilih_opsi(f'Hapus {target}? (y/n): ', ['y','n']).lower()
     if konfirmasi == 'y':
         del akun[target]
+        simpan_akun_ke_csv()
         print(Fore.GREEN + Style.BRIGHT + f'Akun {target} berhasil dihapus!')
         delay()
     else:

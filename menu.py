@@ -22,9 +22,7 @@ def menu_petugas(username):
 
         if pilihan == '1':
             clear()
-            print(Fore.CYAN + Style.BRIGHT + '=== DAFTAR LAPORAN ===')
-            print(tabel())
-            input('\nEnter untuk kembali...')
+            menu_filter_laporan()
         
         elif pilihan == '2':
             clear()
@@ -43,14 +41,11 @@ def menu_petugas(username):
             
         elif pilihan == '5':
             clear()
-            return
+            if logout():
+                return
             
         elif pilihan == '6':
-            clear()
-            simpan_semua()
-            print(Fore.CYAN + Style.BRIGHT + 'Terima kasih telah menggunakan LAPOR AJA!!!')
-            delay()
-            exit() 
+            keluar() 
 
 def menu_warga(username):
     while True:
@@ -62,7 +57,7 @@ def menu_warga(username):
 4. Logout
 5. Keluar Program''')
 
-        pilihan = pilih_opsi('Pilih menu: ', ['1', '2', '3','4'])
+        pilihan = pilih_opsi('Pilih menu: ', ['1', '2', '3','4', '5'])
 
         if pilihan == '1':
             clear()
@@ -81,64 +76,112 @@ def menu_warga(username):
 
         elif pilihan == '4':
             clear()
-            return
+            if logout():
+                return
         
         elif pilihan == '5':
-            clear()
-            simpan_semua()
-            print(Fore.CYAN + Style.BRIGHT + 
-'Terima kasih telah menggunakan LAPOR AJA!!!')
-            delay()
-            exit() 
+            keluar()
 
+def menu_laporan(username):
+    while True:
+        clear()
+        print('''=== MENU LAPORAN ===
+1. Lihat Laporan
+2. Buat Laporan
+3. Ubah Data Laporan
+4. Hapus Laporan
+5. Kembali''')
+        pilihan = pilih_opsi('Pilih: ', ['1', '2', '3', '4', '5'])
+        
+        if pilihan == '1':
+            clear()
+            menu_filter_laporan()
+        elif pilihan == '2':
+            clear()
+            buat_laporan(username)
+            input('\nEnter untuk kembali...')
+        elif pilihan == '3':
+            clear()
+            ubah_data_petugas()
+            input('\nEnter untuk kembali...')
+        elif pilihan == '4':
+            clear()
+            hapus_laporan()
+            input('\nEnter untuk kembali...')
+        elif pilihan == '5':
+            return
+        
+def menu_akun(username):
+    while True:
+        clear()
+        print('''=== MENU AKUN ===
+1. Lihat daftar akun
+2. Ubah Role Akun
+3. Hapus Akun
+4. Kembali''')
+        pilihan = pilih_opsi('Pilih', ['1', '2', '3', '4'])
+        
+        if pilihan == '1':
+            clear()
+            print(Fore.CYAN + Style.BRIGHT + 'Daftar Akun')
+            print(tabul())
+            input('\nEnter untuk kembali...')
+        elif pilihan == '2':
+            clear()
+            ubah_role()
+        elif pilihan == '3':
+            clear()
+            hapus_akun(username)
+            input('\nEnter untuk kembali...')
+        elif pilihan == '4':
+            clear()
+            return
+
+def menu_lainnya():
+    while True:
+        clear()
+        print('''=== MENU AKUN ===
+1. Lihat statistik laporan
+2. Ekspor laporan ke csv
+3. Kembali
+''')
+        pilihan = pilih_opsi('Pilih: ', ['1', '2', '3'])
+        
+        if pilihan == '1':
+            clear()
+            statistik()
+            input('\nEnter untuk kembali...')
+        elif pilihan == '2':
+            clear()
+            ekspor()
+            input('\nEnter untuk kembali...')
+        elif pilihan == '3':
+            clear()
+            return
+        
 def menu_ketua_rt(username):
     while True:
         clear()
         print(f'''=== MENU KETUA RT ({username}) ===
-1. Lihat Semua Laporan
-2. Hapus Laporan
-3. Lihat Statistik Status
-4. Ekspor Laporan ke CSV
-5. Lihat Daftar Akun
-6. Ubah Role Akun
-7. Hapus Akun
-8. Log-out
-9. Keluar Program''')
+1. Menu Laporan
+2. Menu Akun
+3. Menu Lainnya
+4. Log-out
+5. Keluar Program''')
         
-        pilihan = pilih_opsi('Pilih: ', ['1','2','3','4','5','6','7','8', '9'])
+        pilihan = pilih_opsi('Pilih: ', ['1','2','3','4','5'])
         if pilihan == '1':
             clear()
-            print(tabel())
-            input('\nEnter untuk kembali...')
+            menu_laporan(username)
         elif pilihan == '2':
             clear()
-            hapus_laporan()
-            input('\nEnter untuk kembali...')
+            menu_akun(username)
         elif pilihan == '3':
             clear()
-            statistik()
-            input('\nEnter untuk kembali...')
+            menu_lainnya()
         elif pilihan == '4':
             clear()
-            ekspor()
-            input('\nEnter untuk kembali...')
+            if logout():
+                return    
         elif pilihan == '5':
-            clear()
-            print('Daftar Akun')
-            print(tabul())
-            input('\nEnter untuk kembali...')
-        elif pilihan == '6':
-            clear()
-            ubah_role()
-        elif pilihan == '7':
-            clear()
-            hapus_akun(username)
-        elif pilihan == '8':
-            clear()
-            return
-        elif pilihan == '9':
-            clear()
-            simpan_semua()
-            print(Fore.CYAN + Style.BRIGHT + 'Terima kasih telah menggunakan LAPOR AJA!!!')
-            delay()
-            exit()
+            keluar()

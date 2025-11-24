@@ -40,10 +40,4 @@ while True:
         clear()
         register()
     elif pilihan == '3':
-        clear()
-        simpan_semua()
-        cyan('-', '45')
-        print(Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Terima kasih telah menggunakan LAPORIN AJA!!!')
-        cyan('-', '45')
-        delay()
-        exit()
+        keluar()

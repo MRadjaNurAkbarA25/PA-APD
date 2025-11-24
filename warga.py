@@ -56,12 +56,14 @@ Deskripsi       : {lapor['deskripsi']}''')
         
         if pilihan == '1':
             lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
+            simpan_laporan_ke_csv()
             clear()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
             delay()
         
         elif pilihan == '2':
             lapor['deskripsi'] = max_input('Deskripsi (max 50 karakter): ', 50)
+            simpan_laporan_ke_csv()
             clear()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
             delay()

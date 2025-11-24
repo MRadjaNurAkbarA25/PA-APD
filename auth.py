@@ -32,7 +32,7 @@ def register():
         print(Fore.RED + Style.BRIGHT + 'Username sudah digunakan!')
         return
     
-    password = input ('Masukkan Password: ').strip()
+    password = input ('Masukkan Password: ')
     if len(password) < 3:
         print (Fore.RED + Style.BRIGHT + 'Password minimal 3 karakter!')
         delay()
