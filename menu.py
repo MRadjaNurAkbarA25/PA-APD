@@ -10,7 +10,7 @@ init(autoreset=True)
 def menu_petugas(username):
     while True:
         clear()
-        print(Fore.CYAN + Style.BRIGHT + f'''=== MENU PETUGAS ({username}) ===
+        print(f'''=== MENU PETUGAS ({username}) ===
 1. Lihat laporan
 2. Buat Laporan
 3. Ubah Data laporan
@@ -50,7 +50,7 @@ def menu_petugas(username):
 def menu_warga(username):
     while True:
         clear()
-        print(Fore.CYAN + Style.BRIGHT + f'''=== MENU WARGA ({username}) ===
+        print(f'''=== MENU WARGA ({username}) ===
 1. Lihat laporan saya
 2. Buat laporan baru
 3. Ubah Data Laporan
@@ -162,7 +162,7 @@ def menu_lainnya():
 def menu_ketua_rt(username):
     while True:
         clear()
-        print(Fore.CYAN + Style.BRIGHT + f'''=== MENU KETUA RT ({username}) ===
+        print(f'''=== MENU KETUA RT ({username}) ===
 1. Menu Laporan
 2. Menu Akun
 3. Menu Lainnya
