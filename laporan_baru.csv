@@ -1,4 +1,4 @@
-nomor,pelapor,keluhan,deskripsi,status,respon,waktu
+No,Pelapor,Keluhan,Deskripsi,Status,Respon,Waktu
 0001,radja,Admin error,Server tidak respon,selesai,"Permasalahan kabel, aman aja",25/11/25 07:37
 0002,denny,Keluarga Budi,Broken Home,diproses,Segera ditangani,25/11/25 07:37
-0003,yoga,Hewan Liar,Anjing liar ganas di pekarangan,diproses,,25/11/25 07:39
+0003,yoga,Hewan Liar,Anjing liar ganas di pekarangan,diajukan,,25/11/25 07:39

@@ -12,7 +12,9 @@ def statistik():
     for status in sorted(unique):
         jumlah = status_list.count(status)
         print(f'{status}: {jumlah}')
+    delay()
     input('\nEnter untuk kembali...')
+    clear()
 
 def ekspor():
     import csv
@@ -38,9 +40,15 @@ def ekspor():
         print(Fore.YELLOW + Style.BRIGHT + f'Gagal: {e}')
     delay()
 
-def ubah_role():
+def ubah_role(pelapor):
     print(tabul())
     target = input_str('Masukkan username yang rolenya ingin diubah: ')
+    if target == pelapor:
+        print(Fore.RED + Style.BRIGHT + 'Tidak bisa ubah akun sendiri!')
+        delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return
     if target not in akun:
         print(Fore.RED + Style.BRIGHT + 'Akun tidak ditemukan!')
         delay()
@@ -55,9 +63,15 @@ def ubah_role():
         simpan_akun_ke_csv()
         print(Fore.GREEN + Style.BRIGHT + f'Role {target} berhasil diubah!')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return
     else:
         print(Fore.YELLOW + Style.BRIGHT + 'Perubahan dibatalkan')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return
 
 def hapus_akun(pelapor):
     print(tabul())
@@ -65,10 +79,14 @@ def hapus_akun(pelapor):
     if target == pelapor:
         print(Fore.RED + Style.BRIGHT + 'Tidak bisa hapus akun sendiri!')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
         return
     if target not in akun:
         print(Fore.RED + Style.BRIGHT + 'Akun tidak ditemukan!')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
         return
     konfirmasi = pilih_opsi(f'Hapus {target}? (y/n): ', ['y','n']).lower()
     if konfirmasi == 'y':
@@ -76,6 +94,12 @@ def hapus_akun(pelapor):
         simpan_akun_ke_csv()
         print(Fore.GREEN + Style.BRIGHT + f'Akun {target} berhasil dihapus!')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return
     else:
         print(Fore.YELLOW + Style.BRIGHT + 'Penghapusan Dibatalkan')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return

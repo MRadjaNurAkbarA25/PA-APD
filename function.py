@@ -122,7 +122,11 @@ def tampil_filter(laporan_filter):
     print(Fore.CYAN + f' Total: {len(laporan_filter)} laporan ditemukan')
 
 def buat_laporan(pelapor):
-    nomor = str(len(laporan) + 1).zfill(4)
+    if laporan:
+        nomor_terakhir = max(int(k) for k in laporan.keys())
+        nomor = str(nomor_terakhir + 1).zfill(4)
+    else:
+        nomor = '0001'
     keluhan = max_input('Keluhan (max 30 karakter): ', 30)
     deskripsi = max_input('Deskripsi (max 50 karakter): ', 50)
     
@@ -136,7 +140,10 @@ def buat_laporan(pelapor):
     }
     
     print(f'Laporan #{nomor} berhasil dibuat!')
-    simpan_laporan_ke_csv()  
+    simpan_laporan_ke_csv()
+    input('\nEnter untuk kembali...')
+    clear()
+    return  
 
 def hapus_laporan():
     print(tabel())

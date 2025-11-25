@@ -67,12 +67,10 @@ def menu_warga(username):
         elif pilihan == '2':
             clear()
             buat_laporan(username)
-            input('\nEnter untuk kembali...')
             
         elif pilihan == '3':
             clear()
             ubah_laporan_warga(username)
-            input('\nEnter untuk kembali...')
 
         elif pilihan == '4':
             clear()
@@ -128,7 +126,7 @@ def menu_akun(username):
             input('\nEnter untuk kembali...')
         elif pilihan == '2':
             clear()
-            ubah_role()
+            ubah_role(username)
         elif pilihan == '3':
             clear()
             hapus_akun(username)
@@ -140,7 +138,7 @@ def menu_akun(username):
 def menu_lainnya():
     while True:
         clear()
-        print('''=== MENU AKUN ===
+        print('''=== MENU LAINNYA ===
 1. Lihat statistik laporan
 2. Ekspor laporan ke csv
 3. Kembali

@@ -8,6 +8,7 @@ def lihat_laporan_spesifik(pelapor):
     milik = {k: v for k, v in laporan.items() if v["pelapor"] == pelapor}
     if not milik:
         print(Fore.YELLOW + Style.BRIGHT + "Belum ada laporan.")
+        input('\nEnter untuk kembali...')
         return
     for nomor, data in milik.items():
         print(f"\nLaporan #{nomor}")
@@ -24,15 +25,23 @@ def ubah_laporan_warga(pelapor):
     lapor = laporan.get(cari_nomor)
     
     if not lapor:
-        clear()
         print(Fore.RED + Style.BRIGHT + 'Nomor laporan tidak ditemukan!')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
         return
     
     if lapor['pelapor'] != pelapor:
-        clear()
-        print(Fore.YELLOW + Style.BRIGHT + 'Anda tidak dapat mengubah laporan ini')
+        print(Fore.YELLOW + Style.BRIGHT + 'Anda tidak dapat mengubah laporan orang lain')
         delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return
+    if lapor['status'] == 'diproses' and 'selesai':
+        print(Fore.YELLOW + Style.BRIGHT + 'Laporan sedang diproses, tidak dapat diubah')
+        delay()
+        input('\nEnter untuk kembali...')
+        clear()
         return
     
     while True:
@@ -57,16 +66,18 @@ Deskripsi       : {lapor['deskripsi']}''')
         if pilihan == '1':
             lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
             simpan_laporan_ke_csv()
-            clear()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
-            delay()
+            input('\nEnter untuk kembali...')
+            clear()
+            return
         
         elif pilihan == '2':
             lapor['deskripsi'] = max_input('Deskripsi (max 50 karakter): ', 50)
             simpan_laporan_ke_csv()
-            clear()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
-            delay()
+            input('\nEnter untuk kembali...')
+            clear()
+            return
         
         elif pilihan == '3':
             return

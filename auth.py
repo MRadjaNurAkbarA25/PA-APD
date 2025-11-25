@@ -5,7 +5,7 @@ init(autoreset=True)
 
 def login():
     clear()
-    print('=== LOGIN ===')
+    print(Fore.CYAN + Style.BRIGHT + '=== LOGIN ===')
     username = input('Username : ').strip()
     password = input('Password : ')
 
@@ -30,6 +30,7 @@ def register():
     
     if username in akun:
         print(Fore.RED + Style.BRIGHT + 'Username sudah digunakan!')
+        delay()
         return
     
     password = input ('Masukkan Password: ')
