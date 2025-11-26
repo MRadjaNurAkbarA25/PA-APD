@@ -67,6 +67,7 @@ def menu_warga(username):
         elif pilihan == '2':
             clear()
             buat_laporan(username)
+            input('\nEnter untuk kembali...')
             
         elif pilihan == '3':
             clear()
@@ -130,7 +131,6 @@ def menu_akun(username):
         elif pilihan == '3':
             clear()
             hapus_akun(username)
-            input('\nEnter untuk kembali...')
         elif pilihan == '4':
             clear()
             return

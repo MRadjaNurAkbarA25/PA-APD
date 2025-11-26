@@ -140,10 +140,7 @@ def buat_laporan(pelapor):
     }
     
     print(f'Laporan #{nomor} berhasil dibuat!')
-    simpan_laporan_ke_csv()
-    input('\nEnter untuk kembali...')
-    clear()
-    return  
+    simpan_laporan_ke_csv() 
 
 def hapus_laporan():
     print(tabel())

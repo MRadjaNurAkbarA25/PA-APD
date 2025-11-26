@@ -25,6 +25,7 @@ def ubah_laporan_warga(pelapor):
     lapor = laporan.get(cari_nomor)
     
     if not lapor:
+        clear()
         print(Fore.RED + Style.BRIGHT + 'Nomor laporan tidak ditemukan!')
         delay()
         input('\nEnter untuk kembali...')
@@ -37,7 +38,7 @@ def ubah_laporan_warga(pelapor):
         input('\nEnter untuk kembali...')
         clear()
         return
-    if lapor['status'] == 'diproses' and 'selesai':
+    if lapor['status'] == 'diproses' or 'selesai':
         print(Fore.YELLOW + Style.BRIGHT + 'Laporan sedang diproses, tidak dapat diubah')
         delay()
         input('\nEnter untuk kembali...')
@@ -67,17 +68,13 @@ Deskripsi       : {lapor['deskripsi']}''')
             lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
             simpan_laporan_ke_csv()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
-            input('\nEnter untuk kembali...')
-            clear()
-            return
+            
         
         elif pilihan == '2':
             lapor['deskripsi'] = max_input('Deskripsi (max 50 karakter): ', 50)
             simpan_laporan_ke_csv()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
-            input('\nEnter untuk kembali...')
-            clear()
-            return
+            
         
         elif pilihan == '3':
             return
