@@ -15,17 +15,17 @@ def menu_filter_laporan():
 5. Semua Laporan
 6. Laporan Spesifik
 7. Kembali''')
-    pilihan = pilih_opsi('Pilih: ', ['1', '2', '3', '4', '5', '6', '7'])
+    pilihan = pilih_opsi('Pilih: ', ('1', '2', '3', '4', '5', '6', '7'))
     
-    status_map = {
+    STATUS_MAP = {
         '1' : 'diajukan',
         '2' : 'diproses',
         '3' : 'selesai',
         '4' : 'ditolak'
     }
     
-    if pilihan in ['1', '2', '3', '4']:
-        status = status_map[pilihan]
+    if pilihan in ('1', '2', '3', '4'):
+        status = STATUS_MAP[pilihan]
         hasil = filter_status(status)
         tampil_filter(hasil)
         input('\nEnter untuk kembali...')
@@ -88,7 +88,7 @@ Deskripsi       : {lapor['deskripsi']}''')
 5. Kembali ke menu petugas''')
         
         pilihan = pilih_opsi('Pilih menu: ', 
-                            ['1', '2', '3', '4', '5'])
+                            ('1', '2', '3', '4', '5'))
         
         if pilihan == '1':
             lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
@@ -118,8 +118,8 @@ Deskripsi       : {lapor['deskripsi']}''')
 3. Selesai
 4. Ditolak
 5. Kembali''')
-            aksi = pilih_opsi('Pilih menu status: ', ['1', '2',
-                            '3', '4', '5'])
+            aksi = pilih_opsi('Pilih menu status: ', ('1', '2',
+                            '3', '4', '5'))
             if aksi == '1':
                 lapor['status'] = 'diajukan'
                 simpan_laporan_ke_csv()

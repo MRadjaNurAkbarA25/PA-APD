@@ -19,7 +19,7 @@ while True:
 1. Login
 2. Register
 3. Keluar Program''')
-    pilihan = pilih_opsi('Pilih opsi: ', ['1', '2', '3'])
+    pilihan = pilih_opsi('Pilih opsi: ', ('1', '2', '3'))
     
     if pilihan == '1':
         if user_login:

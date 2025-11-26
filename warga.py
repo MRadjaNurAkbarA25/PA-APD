@@ -62,19 +62,19 @@ Deskripsi       : {lapor['deskripsi']}''')
 3. Kembali ke menu warga''')
         
         pilihan = pilih_opsi('Pilih menu: ', 
-                        ['1', '2', '3'])
+                        ('1', '2', '3'))
         
         if pilihan == '1':
             lapor['keluhan'] = max_input('Keluhan (max 30 karakter): ', 30)
             simpan_laporan_ke_csv()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
-            
+            delay()
         
         elif pilihan == '2':
             lapor['deskripsi'] = max_input('Deskripsi (max 50 karakter): ', 50)
             simpan_laporan_ke_csv()
             print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil diupdate!')
-            
+            delay()
         
         elif pilihan == '3':
             return

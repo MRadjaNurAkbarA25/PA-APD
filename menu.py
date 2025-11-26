@@ -18,7 +18,7 @@ def menu_petugas(username):
 5. Logout
 6. Keluar Program''')
 
-        pilihan = pilih_opsi('Pilih menu: ', ['1', '2', '3', '4', '5', '6'])
+        pilihan = pilih_opsi('Pilih menu: ', ('1', '2', '3', '4', '5', '6'))
 
         if pilihan == '1':
             clear()
@@ -57,7 +57,7 @@ def menu_warga(username):
 4. Logout
 5. Keluar Program''')
 
-        pilihan = pilih_opsi('Pilih menu: ', ['1', '2', '3','4', '5'])
+        pilihan = pilih_opsi('Pilih menu: ', ('1', '2', '3','4', '5'))
 
         if pilihan == '1':
             clear()
@@ -90,7 +90,7 @@ def menu_laporan(username):
 3. Ubah Data Laporan
 4. Hapus Laporan
 5. Kembali''')
-        pilihan = pilih_opsi('Pilih: ', ['1', '2', '3', '4', '5'])
+        pilihan = pilih_opsi('Pilih: ', ('1', '2', '3', '4', '5'))
         
         if pilihan == '1':
             clear()
@@ -118,7 +118,7 @@ def menu_akun(username):
 2. Ubah Role Akun
 3. Hapus Akun
 4. Kembali''')
-        pilihan = pilih_opsi('Pilih', ['1', '2', '3', '4'])
+        pilihan = pilih_opsi('Pilih', ('1', '2', '3', '4'))
         
         if pilihan == '1':
             clear()
@@ -143,7 +143,7 @@ def menu_lainnya():
 2. Ekspor laporan ke csv
 3. Kembali
 ''')
-        pilihan = pilih_opsi('Pilih: ', ['1', '2', '3'])
+        pilihan = pilih_opsi('Pilih: ', ('1', '2', '3'))
         
         if pilihan == '1':
             clear()
@@ -167,7 +167,7 @@ def menu_ketua_rt(username):
 4. Log-out
 5. Keluar Program''')
         
-        pilihan = pilih_opsi('Pilih: ', ['1','2','3','4','5'])
+        pilihan = pilih_opsi('Pilih: ', ('1','2','3','4','5'))
         if pilihan == '1':
             clear()
             menu_laporan(username)

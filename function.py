@@ -163,7 +163,7 @@ Respon          : {lapor['respon']}
 Waktu           : {lapor['date']}
 Deskripsi       : {lapor['deskripsi']}''')
     
-    konfirmasi = pilih_opsi('Hapus laporan?(y/n): ', ['y','n']).lower()
+    konfirmasi = pilih_opsi('Hapus laporan?(y/n): ', ('y','n')).lower()
     
     if konfirmasi == 'y':
         del laporan[cari_nomor]
@@ -178,7 +178,7 @@ Deskripsi       : {lapor['deskripsi']}''')
 
 def logout():
     clear()
-    kembali = pilih_opsi('Konfirmasi log-out?(y/n): ', ['y', 'n']).lower()
+    kembali = pilih_opsi('Konfirmasi log-out?(y/n): ', ('y', 'n')).lower()
     
     if kembali == 'y':
         clear()
@@ -193,9 +193,9 @@ def logout():
 def keluar(): #Fungsi untuk keluar dari program
     clear()
     while True:
-        konfirmasi = input('Yakin ingin keluar dari program?(y/n):')
+        konfirmasi = pilih_opsi('Yakin ingin keluar dari program?(y/n): ', ('y', 'n')).lower()
         
-        if konfirmasi.lower() == 'y':
+        if konfirmasi == 'y':
             clear()
             simpan_semua()
             cyan('-', '45')
@@ -203,13 +203,11 @@ def keluar(): #Fungsi untuk keluar dari program
             cyan('-', '45')
             delay()
             exit()
-        elif konfirmasi.lower() == 'n':
+        elif konfirmasi == 'n':
             print('Kembali ke program')
             delay()
             clear()
             return
-        else:
-            print(Fore.RED + Style.BRIGHT + 'Input tidak valid!')
 
 def simpan_akun_ke_csv():
     with open('akun.csv', 'w', newline='', encoding='utf-8') as f:

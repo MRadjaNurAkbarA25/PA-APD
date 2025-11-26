@@ -6,18 +6,32 @@ init(autoreset=True)
 
 def statistik():
     clear()
+    
+    if not laporan:
+        print(Fore.YELLOW + Style.BRIGHT + 'Belum ada laporan')
+        delay()
+        input('\nEnter untuk kembali...')
+        clear()
+        return
+    
     status_list = [data['status'].lower() for data in laporan.values()]
     unique = set(status_list)
     print(Fore.CYAN + Style.BRIGHT + '=== STATISTIK LAPORAN ===')
     for status in sorted(unique):
         jumlah = status_list.count(status)
-        print(f'{status}: {jumlah}')
+        print(f'{status.capitalize()}: {jumlah}')
+    print(f'Total semua laporan: {len(laporan)}')
     delay()
     input('\nEnter untuk kembali...')
     clear()
 
 def ekspor():
     import csv
+    
+    if not laporan:
+        print(Fore.YELLOW + Style.BRIGHT + 'Tidak ada laporan untuk diekspor!')
+        delay()
+        return
     nama_file = input('Nama file (tanpa .csv): ').strip()
     if not nama_file:
         nama_file = 'laporan_rt'
@@ -37,7 +51,7 @@ def ekspor():
                 ])
         print(Fore.GREEN + Style.BRIGHT + f'Laporan diekspor ke {nama_file}.csv')
     except Exception as e:
-        print(Fore.YELLOW + Style.BRIGHT + f'Gagal: {e}')
+        print(Fore.RED + Style.BRIGHT + f'Gagal: {e}')
     delay()
 
 def ubah_role(pelapor):
@@ -54,10 +68,10 @@ def ubah_role(pelapor):
         delay()
         return
     print('1. Warga\n2. Petugas')
-    role_pilih = pilih_opsi('Role baru: ', ['1','2'])
+    role_pilih = pilih_opsi('Role baru: ', ('1','2'))
     role_map = {'1': 'warga', '2': 'petugas'}
     
-    konfirmasi = pilih_opsi(f'Ganti role {target}? (y/n): ', ['y','n']).lower()
+    konfirmasi = pilih_opsi(f'Ganti role {target}? (y/n): ', ('y','n')).lower()
     if konfirmasi == 'y':
         akun[target]['role'] = role_map[role_pilih]
         simpan_akun_ke_csv()
@@ -88,7 +102,7 @@ def hapus_akun(pelapor):
         input('\nEnter untuk kembali...')
         clear()
         return
-    konfirmasi = pilih_opsi(f'Hapus {target}? (y/n): ', ['y','n']).lower()
+    konfirmasi = pilih_opsi(f'Hapus {target}? (y/n): ', ('y','n')).lower()
     if konfirmasi == 'y':
         del akun[target]
         simpan_akun_ke_csv()

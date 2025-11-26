@@ -50,4 +50,5 @@ def register():
             print (Fore.GREEN + Style.BRIGHT + 'Akun berhasil didaftarkan!')
             simpan_akun_ke_csv()
             delay()
+            clear()
             return
