@@ -168,6 +168,7 @@ Deskripsi       : {lapor['deskripsi']}''')
     if konfirmasi == 'y':
         del laporan[cari_nomor]
         clear()
+        simpan_laporan_ke_csv()
         print(Fore.GREEN + Style.BRIGHT + 'Laporan berhasil dihapus!')
         delay()
     else:

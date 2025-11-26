@@ -38,7 +38,7 @@ def ubah_laporan_warga(pelapor):
         input('\nEnter untuk kembali...')
         clear()
         return
-    if lapor['status'] == 'diproses' or 'selesai':
+    if lapor['status'] in ('diproses', 'selesai'):
         print(Fore.YELLOW + Style.BRIGHT + 'Laporan sedang diproses, tidak dapat diubah')
         delay()
         input('\nEnter untuk kembali...')
