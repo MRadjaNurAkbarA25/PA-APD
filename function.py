@@ -198,9 +198,9 @@ def keluar(): #Fungsi untuk keluar dari program
         if konfirmasi == 'y':
             clear()
             simpan_semua()
-            cyan('-', '45')
+            print(Fore.CYAN + Style.BRIGHT + '=' * 45)
             print(Fore.LIGHTCYAN_EX + Style.BRIGHT + 'Terima kasih telah menggunakan LAPORIN AJA!!!')
-            cyan('-', '45')
+            print(Fore.CYAN + Style.BRIGHT + '=' * 45)
             delay()
             exit()
         elif konfirmasi == 'n':
