@@ -85,7 +85,7 @@ Deskripsi       : {lapor['deskripsi']}''')
 2. Ubah respon
 3. Ubah deskripsi
 4. Ubah status
-5. Kembali ke menu petugas''')
+5. Kembali''')
         
         pilihan = pilih_opsi('Pilih menu: ', 
                             ('1', '2', '3', '4', '5'))
