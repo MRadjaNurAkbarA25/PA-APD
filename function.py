@@ -236,7 +236,6 @@ def simpan_semua():
     simpan_laporan_ke_csv()
 
 def muat_data_dari_csv():
-    global akun, laporan
 
     if os.path.exists('akun.csv'):
         with open('akun.csv', 'r', encoding='utf-8') as f:

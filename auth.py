@@ -23,11 +23,18 @@ def register():
     print(Fore.CYAN + Style.BRIGHT + '===SIGN IN===')
     username = input('Masukkan Username: ').strip()
     
+    if not username:
+        print(Fore.RED + Style.BRIGHT + 'Username tidak boleh kosong!')
+        delay()
+        return
+    if len(username) < 3 or len(username) > 20:  
+        print(Fore.RED + Style.BRIGHT + 'Username harus 3-20 karakter!')
+        delay()
+        return
     if not username.isalnum():
         print (Fore.RED + Style.BRIGHT + 'Username hanya boleh huruf dan angka!')
         delay()
         return
-    
     if username in akun:
         print(Fore.RED + Style.BRIGHT + 'Username sudah digunakan!')
         delay()
@@ -38,7 +45,6 @@ def register():
         print (Fore.RED + Style.BRIGHT + 'Password minimal 3 karakter!')
         delay()
         return
-    
     while True:
         konfirmasi = input('Konfirmasi password: ').strip()
         if password != konfirmasi:
